@@ -1,0 +1,47 @@
+* {
+  transition: all 0.3s ease-in-out;
+}
+
+.container {
+  clear: both;
+  overflow: auto;
+  background-color: #f0758a;
+  border-bottom: 1px solid black;
+}
+
+nav {
+  float: right;
+  padding-right: 20px;
+  padding-top: 5px;
+}
+
+.logo img {
+  float: left;
+  padding-left: 20px;
+  padding-top: 5px;
+}
+
+h1{
+  float: left;
+  padding-left: 20px;
+  font-family: "Consolas";
+}
+
+ul li {
+  display: inline-block;
+  padding: 8px;
+  font-size: 19px;
+}
+
+ul .has-hover:hover {
+  color: black;
+  background-color: #EF4460;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+li:last-child {
+  text-decoration: underline;
+}
+
+

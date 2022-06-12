@@ -1,0 +1,54 @@
+<div class="content" fxLayout="row" fxLayout.xs="column" fxFlexFill>
+  <div id="principal">
+    <form ngNativeValidate>
+      <h2>Detalhes do produto</h2>
+      <div class="field flex">
+        <h3>Nome</h3>
+        <p>Tênis Air Jordan 1 Low Feminino</p>
+      </div>
+      <div class="field flex">
+        <h3>Id</h3>
+        <p>243232442343</p>
+      </div>
+      <div class="field flex">
+        <h3>Marca</h3>
+        <p>Nike</p>
+      </div>
+      <div class="field flex">
+        <h3>Tamanho</h3>
+        <p>36</p>
+      </div>
+      <div class="field flex">
+        <h3>Preço</h3>
+        <p>R$500,00</p>
+      </div>
+      <div class="field">
+        <input
+          horizontalgap
+          name="delete"
+          id="delete"
+          type="button"
+          value="Excluir"
+        />
+        <input
+        horizontalgap
+        name="edit"
+        id="edit"
+        type="button"
+        routerLink="/edit-product"
+        value="Editar"
+      />
+      </div>
+    </form>
+  </div>
+</div>
+
+<div *ngIf="this.waiting == true">
+  <app-loader></app-loader>
+</div>
+
+<div *ngIf="this.notFound == true">
+  <div>
+    <h2>Erro ao carregar o seu perfil.</h2>
+  </div>
+</div>

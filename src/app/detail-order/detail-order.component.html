@@ -1,0 +1,66 @@
+<div class="content" fxLayout="row" fxLayout.xs="column" fxFlexFill>
+  <div id="principal">
+    <form ngNativeValidate>
+      <h2>Detalhes do pedido</h2>
+      <div class="field flex">
+        <h3>Id</h3>
+        <p>32121432134</p>
+      </div>
+      <div class="field flex">
+        <h3>Data da compra</h3>
+        <p>14/03/2002</p>
+      </div>
+      <div class="field flex">
+        <h3>Produto</h3>
+        <p>Tênis Nike blabla</p>
+      </div>
+      <div class="field flex">
+        <h3>Quantidade</h3>
+        <p>10</p>
+      </div>
+      <div class="field flex">
+        <h3>Valor da compra</h3>
+        <p>R$5000,00</p>
+      </div>
+      <div class="field flex">
+        <h3>CEP</h3>
+        <p>13563-776</p>
+      </div>
+      <div class="field flex">
+        <h3>Número da casa</h3>
+        <p>157</p>
+      </div>
+      <div class="field flex">
+        <h3>Complemento</h3>
+        <p>Apartamento 1</p>
+      </div>
+      <div class="field">
+        <input
+          horizontalgap
+          name="delete"
+          id="delete"
+          type="button"
+          value="Excluir"
+        />
+        <input
+          horizontalgap
+          name="edit"
+          id="edit"
+          type="button"
+          routerLink="/edit-order"
+          value="Editar"
+        />
+      </div>
+    </form>
+  </div>
+</div>
+
+<div *ngIf="this.waiting == true">
+  <app-loader></app-loader>
+</div>
+
+<div *ngIf="this.notFound == true">
+  <div>
+    <h2>Erro ao carregar o seu perfil.</h2>
+  </div>
+</div>

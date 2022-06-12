@@ -1,0 +1,41 @@
+<div class="content" fxLayout="row" fxLayout.xs="column" fxFlexFill>
+  <div id="principal">
+    <form ngNativeValidate>
+      <h2>Detalhes</h2>
+      <div  class="field flex">
+        <h3>Nome</h3>
+        <p>Letícia</p>
+      </div>
+      <div  class="field  flex">
+        <h3>Email</h3>
+        <p>leticia@gmail.com</p>
+      </div>
+      <div  class="field  flex">
+        <h3>CPF</h3>
+        <p>000.000.000-00</p>
+      </div>
+      <div  class="field  flex">
+        <h3>Data de criação</h3>
+        <p>10/06/2022</p>
+      </div>
+      <div  class="field  flex">
+        <h3>Data da última edição</h3>
+        <p>11/06/2022</p>
+      </div>
+      <div  class="field">
+        <input routerLink="/edit-profile" horizontalgap name="back" id="back" type="button" value="Editar" />
+      </div>
+
+    </form>
+  </div>
+</div>
+
+<div *ngIf="this.waiting == true">
+  <app-loader></app-loader>
+</div>
+
+<div *ngIf="this.notFound == true">
+  <div>
+    <h2>Erro ao carregar o seu perfil.</h2>
+  </div>
+</div>

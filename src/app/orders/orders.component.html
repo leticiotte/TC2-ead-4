@@ -1,0 +1,74 @@
+<button class="add" routerLink="/add-order">Adicionar pedido</button>
+
+<table class="styled-table center">
+  <thead>
+    <tr>
+      <th class="has-text-centered">Id do pedido</th>
+      <th class="has-text-centered">Nome do produto</th>
+      <th class="has-text-centered">Quantidade</th>
+      <th class="has-text-centered">Data</th>
+      <th class="has-text-centered">Opções</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="has-text-centered">OrderId</td>
+      <td class="has-text-centered">ProductName</td>
+      <td class="has-text-centered">Quantity</td>
+      <td class="has-text-centered">Date</td>
+      <td class="has-text-centered">
+        <div class="buttons is-centered">
+          <button mat-raised-button class="details">Ver pedido</button>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td class="has-text-centered">OrderId</td>
+      <td class="has-text-centered">ProductName</td>
+      <td class="has-text-centered">Quantity</td>
+      <td class="has-text-centered">Date</td>
+      <td class="has-text-centered">
+        <div class="buttons is-centered">
+          <button mat-raised-button class="details">Ver pedido</button>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td class="has-text-centered">OrderId</td>
+      <td class="has-text-centered">ProductName</td>
+      <td class="has-text-centered">Quantity</td>
+      <td class="has-text-centered">Date</td>
+      <td class="has-text-centered">
+        <div class="buttons is-centered">
+          <button mat-raised-button class="details">Ver pedido</button>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td class="has-text-centered">OrderId</td>
+      <td class="has-text-centered">ProductName</td>
+      <td class="has-text-centered">Quantity</td>
+      <td class="has-text-centered">Date</td>
+      <td class="has-text-centered">
+        <div class="buttons is-centered">
+          <button mat-raised-button class="details">Ver pedido</button>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td class="has-text-centered">OrderId</td>
+      <td class="has-text-centered">ProductName</td>
+      <td class="has-text-centered">Quantity</td>
+      <td class="has-text-centered">Date</td>
+      <td class="has-text-centered">
+        <div class="buttons is-centered">
+          <button mat-raised-button class="details" routerLink="/detail-order">Ver pedido</button>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div *ngIf="this.waiting == true">
+  <app-loader></app-loader>
+</div>

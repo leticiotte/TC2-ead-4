@@ -1,0 +1,107 @@
+<div class="split left">
+  <div class="principal">
+    <form ngNativeValidate>
+      <h2>Login</h2>
+      <div class="field flex">
+        <label class="label">Email</label>
+        <input
+          [(ngModel)]="email"
+          name="email"
+          id="email"
+          type="text"
+          placeholder="Seu email"
+          class="input"
+        />
+      </div>
+      <div class="field flex">
+        <label class="label">Senha</label>
+        <input
+          [(ngModel)]="password"
+          name="senha"
+          type="password"
+          placeholder="Sua senha"
+          class="input"
+        />
+      </div>
+      <div class="field">
+        <input
+          (click)="login()"
+          horizontalgap
+          class="login"
+          name="submit"
+          type="submit"
+          value="Login"
+        />
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="split right">
+  <div class="principal">
+    <form ngNativeValidate [formGroup]="form">
+      <h2>Cadastro</h2>
+      <div class="field flex">
+        <label class="label">Nome</label>
+        <input
+          [(ngModel)]="user.name"
+          formControlName="name"
+          name="name"
+          id="name"
+          type="text"
+          placeholder="Seu nome"
+          class="input"
+        />
+      </div>
+      <div class="field flex">
+        <label class="label">Email</label>
+        <input
+          [(ngModel)]="user.email"
+          formControlName="email"
+          name="username"
+          id="username"
+          type="email"
+          placeholder="Seu email"
+          class="input"
+        />
+      </div>
+      <div class="field flex">
+        <label class="label">CPF</label>
+        <input
+          [(ngModel)]="user.cpf"
+          formControlName="cpf"
+          name="cpf"
+          id="cpf"
+          placeholder="Seu cpf"
+          type="text"
+          class="input"
+          [imask]="{ mask: '000.000.000-00' }"
+        />
+      </div>
+      <div class="field flex">
+        <label class="label">Senha</label>
+        <input
+          [(ngModel)]="user.password"
+          formControlName="password"
+          name="senha"
+          type="password"
+          placeholder="Sua senha"
+          class="input"
+        />
+        <small style="color: orange; text-align: right"
+          >No mínimo 8 caracteres</small
+        >
+      </div>
+      <div class="field">
+        <input
+          (click)="add()"
+          horizontalgap
+          class="cadastrar"
+          name="submit"
+          type="submit"
+          value="Cadastrar"
+        />
+      </div>
+    </form>
+  </div>
+</div>
