@@ -13,8 +13,8 @@ import { User } from '../models/User';
 export class HomeComponent implements OnInit {
   form!: FormGroup;
   user: User = { name: '', email: '', password: '', cpf: '' };
-  email = 'leticia@gmail.com';
-  password = 'senha123';
+  email = '';
+  password = '';
 
   constructor(
     private web: DatabaseService,
