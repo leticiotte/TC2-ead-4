@@ -1,0 +1,78 @@
+<div class="content" fxLayout="row" fxLayout.xs="column" fxFlexFill>
+  <div id="principal">
+    <form ngNativeValidate [formGroup]="form">
+      <h2>Cadastrar produto</h2>
+      <div class="field flex">
+        <label class="label">Nome</label>
+        <input
+          [(ngModel)]="product.name"
+          formControlName="name"
+          name="name"
+          id="name"
+          type="text"
+          placeholder="Nome do produto"
+          class="input"
+        />
+      </div>
+      <div class="field flex">
+        <label class="label">Marca</label>
+        <input
+          [(ngModel)]="product.brand"
+          formControlName="brand"
+          name="brand"
+          id="brand"
+          type="text"
+          placeholder="Marca do produto"
+          class="input"
+        />
+      </div>
+      <div class="field flex">
+        <label class="label">Url da imagem</label>
+        <input
+          [(ngModel)]="product.url"
+          formControlName="url"
+          name="url"
+          id="url"
+          type="text"
+          placeholder="Url da imagem do produto"
+          class="input"
+        />
+      </div>
+      <div class="field flex">
+        <label class="label">Size</label>
+        <input
+          [(ngModel)]="product.size"
+          formControlName="size"
+          name="size"
+          id="size"
+          type="number"
+          class="input"
+        />
+        <small style="color: orange; text-align: right">Entre 1 e 55</small>
+      </div>
+      <div class="field flex">
+        <label class="label">Price</label>
+        <input
+          pattern="[0-9]+([\.,][0-9]+)?"
+          step="0.01"
+          [(ngModel)]="product.price"
+          formControlName="price"
+          name="price"
+          id="price"
+          type="number"
+          class="input"
+        />
+      </div>
+      <div class="field">
+        <input
+          (click)="add()"
+          horizontalgap
+          name="submit"
+          id="submit"
+          type="submit"
+          value="Cadastrar"
+        />
+      </div>
+    </form>
+  </div>
+</div>

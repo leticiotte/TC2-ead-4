@@ -1,0 +1,54 @@
+<div
+  *ngIf="this.waiting == false && user !== undefined"
+  class="content"
+  fxLayout="row"
+  fxLayout.xs="column"
+  fxFlexFill
+>
+  <div id="principal">
+    <form ngNativeValidate>
+      <h2>Detalhes</h2>
+      <div class="field flex">
+        <h3>Nome</h3>
+        <p>{{ user.name }}</p>
+      </div>
+      <div class="field flex">
+        <h3>Email</h3>
+        <p>{{ user.email }}</p>
+      </div>
+      <div class="field flex">
+        <h3>CPF</h3>
+        <p>{{ user.cpf }}</p>
+      </div>
+      <div class="field flex">
+        <h3>Data de criação</h3>
+        <p>{{ user.creationTimestamp }}</p>
+      </div>
+      <div class="field flex">
+        <h3>Data da última edição</h3>
+        <p *ngIf="user.updatedTimestamp">{{ user.updatedTimestamp }}</p>
+        <p *ngIf="!user.updatedTimestamp">Ainda não houve edição</p>
+      </div>
+      <div class="field">
+        <input
+          routerLink="/edit-profile"
+          horizontalgap
+          name="back"
+          id="back"
+          type="button"
+          value="Editar"
+        />
+      </div>
+    </form>
+  </div>
+</div>
+
+<div *ngIf="this.waiting == true">
+  <app-loader></app-loader>
+</div>
+
+<div *ngIf="this.notFound == true">
+  <div>
+    <h2>Erro ao carregar o seu perfil.</h2>
+  </div>
+</div>

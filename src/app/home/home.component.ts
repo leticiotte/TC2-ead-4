@@ -13,8 +13,8 @@ import { User } from '../models/User';
 export class HomeComponent implements OnInit {
   form!: FormGroup;
   user: User = { name: '', email: '', password: '', cpf: '' };
-  email = '';
-  password = '';
+  email = 'leticia@gmail.com';
+  password = 'senha123';
 
   constructor(
     private web: DatabaseService,
@@ -27,6 +27,8 @@ export class HomeComponent implements OnInit {
     this.web.addUser(this.user).subscribe((res) => {
       if (res.ok == true) {
         this.toastr.success('Cadastro realizado com sucesso!');
+        sessionStorage.setItem('userId', (res.body as any).user._id);
+        this.router.navigate(['/products']);
       } else {
         this.toastr.error('Não foi possível realizar o cadastro.');
       }
@@ -34,39 +36,31 @@ export class HomeComponent implements OnInit {
   }
 
   login() {
-    this.web.authenticateUser(this.email, this.password).subscribe((res) => {
-      if (res.ok == true) {
-        if ((res.body as any).status == 'Erro') {
-          this.toastr.error(
-            'Não foi possível realizar o login: ' + (res.body as any).msg
-          );
-          this.router.navigate(['/home']);
-          return;
+    const response = this.web
+      .authenticateUser(this.email, this.password)
+      .subscribe(
+        (res) => {
+          if (res.ok == true) {
+            if ((res.body as any).status == 'Erro') {
+              this.toastr.error(
+                'Não foi possível realizar o login: ' + (res.body as any).msg
+              );
+              this.router.navigate(['/home']);
+              return;
+            }
+            this.toastr.success('Login realizado com sucesso!', undefined, {
+              timeOut: 2000,
+            });
+            sessionStorage.setItem('userId', (res.body as any).user._id);
+            this.router.navigate(['/products']);
+          } else {
+            this.toastr.error('Não foi possível realizar o login');
+          }
+        },
+        (_err) => {
+          this.toastr.error('Não foi possível realizar o login');
         }
-        this.toastr.success('Login realizado com sucesso!', undefined, {
-          timeOut: 2000,
-        });
-        sessionStorage.setItem('token', (res.body as any).token);
-        sessionStorage.setItem('expiry', (res.body as any).expiry);
-        this.router.navigate(['/messages']);
-      } else {
-        this.toastr.error(
-          'Não foi possível realizar o login: ' + (res.body as any).msg
-        );
-      }
-    });
-  }
-
-  verifyIfTokenDoesntExpired(): void {
-    const expiry = Number(sessionStorage.getItem('expiry'));
-    if (expiry) {
-      const now = new Date().getTime();
-      if (expiry > now) {
-        this.router.navigate(['/messages']);
-      } else {
-        sessionStorage.clear();
-      }
-    }
+      );
   }
 
   verifyErrorOnForm() {
@@ -95,18 +89,19 @@ export class HomeComponent implements OnInit {
       ]),
       cpf: new FormControl(this.user.cpf, [
         Validators.required,
-        Validators.min(14),
-        Validators.max(14),
+        Validators.minLength(14),
+        Validators.maxLength(14),
       ]),
       password: new FormControl(this.user.password, [
         Validators.required,
-        Validators.min(8),
+        Validators.minLength(8),
       ]),
     });
   }
 
   ngOnInit(): void {
-    this.verifyIfTokenDoesntExpired();
+    const userId = sessionStorage.getItem('userId');
+    if (userId) this.router.navigate(['/products']);
     this.initForm();
   }
 }

@@ -1,27 +1,27 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
-import {IMaskModule} from 'angular-imask';
-
+import { IMaskModule } from 'angular-imask';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { LoaderComponent } from './loader/loader.component';
-import { ProductsComponent } from './products/products.component';
-import { OrdersComponent } from './orders/orders.component';
-import { ProfileComponent } from './profile/profile.component';
-import { AddProductComponent } from './add-product/add-product.component';
-import { DetailProductComponent } from './detail-product/detail-product.component';
-import { EditProductComponent } from './edit-product/edit-product.component';
-import { EditProfileComponent } from './edit-profile/edit-profile.component';
-import { DetailOrderComponent } from './detail-order/detail-order.component';
-import { AddOrderComponent } from './add-order/add-order.component';
-import { EditOrderComponent } from './edit-order/edit-order.component';
-
+import { ProductsComponent } from './product/products/products.component';
+import { OrdersComponent } from './order/orders/orders.component';
+import { ProfileComponent } from './user/profile/profile.component';
+import { AddProductComponent } from './product/add-product/add-product.component';
+import { DetailProductComponent } from './product/detail-product/detail-product.component';
+import { EditProductComponent } from './product/edit-product/edit-product.component';
+import { EditProfileComponent } from './user/edit-profile/edit-profile.component';
+import { DetailOrderComponent } from './order/detail-order/detail-order.component';
+import { AddOrderComponent } from './order/add-order/add-order.component';
+import { EditOrderComponent } from './order/edit-order/edit-order.component';
+import { ErrorCatchingInterceptor } from './interceptors/error-catching.interceptor';
+import { PricePipe } from './price.pipe';
 
 @NgModule({
   declarations: [
@@ -37,7 +37,8 @@ import { EditOrderComponent } from './edit-order/edit-order.component';
     EditProfileComponent,
     DetailOrderComponent,
     AddOrderComponent,
-    EditOrderComponent
+    EditOrderComponent,
+    PricePipe,
   ],
   imports: [
     BrowserModule,
@@ -47,9 +48,15 @@ import { EditOrderComponent } from './edit-order/edit-order.component';
     ToastrModule.forRoot(),
     IMaskModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorCatchingInterceptor,
+      multi: true,
+    },
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

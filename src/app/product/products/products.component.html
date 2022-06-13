@@ -1,0 +1,17 @@
+<button class="add" routerLink="/add-product">Adicionar produto</button>
+<ul class="list">
+  <li class="list-item" *ngFor="let p of listProducts">
+    <div class="list-content">
+      <h3>{{ p.name }}</h3>
+      <img src="{{ p.url }}" alt="lobster" width="150" height="150" />
+      <h4>{{ p.price | price }}</h4>
+      <button class="see-more" routerLink="/detail-product/{{ p._id }}">
+        Ver mais
+      </button>
+    </div>
+  </li>
+</ul>
+
+<div *ngIf="this.waiting == true">
+  <app-loader></app-loader>
+</div>

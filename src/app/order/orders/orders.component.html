@@ -1,0 +1,36 @@
+<button class="add" routerLink="/add-order">Adicionar pedido</button>
+
+<table class="styled-table center">
+  <thead>
+    <tr>
+      <th class="has-text-centered">Id do pedido</th>
+      <th class="has-text-centered">Nome do produto</th>
+      <th class="has-text-centered">Quantidade</th>
+      <th class="has-text-centered">Data</th>
+      <th class="has-text-centered">Opções</th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let o of listOrders">
+    <tr>
+      <td class="has-text-centered">{{ o._id }}</td>
+      <td class="has-text-centered">{{ o.productName }}</td>
+      <td class="has-text-centered">{{ o.quantity }}</td>
+      <td class="has-text-centered">{{ o.creationTimestamp }}</td>
+      <td class="has-text-centered">
+        <div class="buttons is-centered">
+          <button
+            mat-raised-button
+            class="details"
+            routerLink="/detail-order/{{ o._id }}"
+          >
+            Ver pedido
+          </button>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div *ngIf="this.waiting == true">
+  <app-loader></app-loader>
+</div>

@@ -1,0 +1,80 @@
+<div class="content" fxLayout="row" fxLayout.xs="column" fxFlexFill>
+  <div id="principal">
+    <form ngNativeValidate [formGroup]="form">
+      <h2>Editar pedido</h2>
+      <div class="field flex">
+        <label class="label">Produto</label>
+        <select
+          name="products"
+          id="products"
+          formControlName="productId"
+          [(ngModel)]="order.productId"
+        >
+          <option value="" disabled selected hidden>
+            Selecione um produto
+          </option>
+          <option *ngFor="let p of listProducts" value="{{ p._id }}">
+            {{ p.name }}
+          </option>
+        </select>
+      </div>
+      <div class="field flex">
+        <label class="label">Quantidade</label>
+        <input
+          [(ngModel)]="order.quantity"
+          formControlName="quantity"
+          name="quantity"
+          id="quantity"
+          type="number"
+          class="input"
+        />
+      </div>
+      <div class="field flex">
+        <label class="label">CEP</label>
+        <input
+          [(ngModel)]="order.zipCode"
+          formControlName="zipCode"
+          name="zipCode"
+          id="zipCode"
+          placeholder="Seu cep"
+          type="text"
+          class="input"
+          [imask]="{ mask: '00000-000' }"
+        />
+      </div>
+      <div class="field flex">
+        <label class="label">Número</label>
+        <input
+          [(ngModel)]="order.streetNumber"
+          formControlName="streetNumber"
+          name="streetNumber"
+          id="streetNumber"
+          type="number"
+          class="input"
+          value="1"
+        />
+      </div>
+      <div class="field flex">
+        <label class="label">Complemento</label>
+        <textarea
+          [(ngModel)]="order.complement"
+          formControlName="complement"
+          name="complement"
+          id="complement"
+          placeholder="Apto. 13"
+          class="input"
+        ></textarea>
+      </div>
+      <div class="field">
+        <input
+          (click)="edit()"
+          horizontalgap
+          name="submit"
+          id="submit"
+          type="submit"
+          value="Editar"
+        />
+      </div>
+    </form>
+  </div>
+</div>

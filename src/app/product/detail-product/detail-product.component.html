@@ -1,0 +1,61 @@
+<div
+  *ngIf="this.waiting == false && product !== undefined"
+  class="content"
+  fxLayout="row"
+  fxLayout.xs="column"
+  fxFlexFill
+>
+  <div id="principal">
+    <form ngNativeValidate>
+      <h2>Detalhes do produto</h2>
+      <div class="field flex">
+        <h3>Nome</h3>
+        <p>{{ product.name }}</p>
+      </div>
+      <div class="field flex">
+        <h3>Id</h3>
+        <p>{{ product._id }}</p>
+      </div>
+      <div class="field flex">
+        <h3>Marca</h3>
+        <p>{{ product.brand }}</p>
+      </div>
+      <div class="field flex">
+        <h3>Tamanho</h3>
+        <p>{{ product.size }}</p>
+      </div>
+      <div class="field flex">
+        <h3>Preço</h3>
+        <p>{{ product.price | price }}</p>
+      </div>
+      <div class="field">
+        <input
+          (click)="deleteProduct(product._id)"
+          horizontalgap
+          name="delete"
+          id="delete"
+          type="button"
+          value="Excluir"
+        />
+        <input
+          horizontalgap
+          name="edit"
+          id="edit"
+          type="button"
+          routerLink="/edit-product/{{ product._id }}"
+          value="Editar"
+        />
+      </div>
+    </form>
+  </div>
+</div>
+
+<div *ngIf="this.waiting == true">
+  <app-loader></app-loader>
+</div>
+
+<div *ngIf="this.notFound == true">
+  <div>
+    <h2>Erro ao carregar produto.</h2>
+  </div>
+</div>
